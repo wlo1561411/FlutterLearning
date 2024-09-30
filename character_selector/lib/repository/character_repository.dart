@@ -17,6 +17,12 @@ class CharacterRepository extends ChangeNotifier {
     _saveToLocal();
   }
 
+  void delete(Character character) {
+    _characters.remove(character);
+    notifyListeners();
+    _saveToLocal();
+  }
+
   List<Character> get() {
     return _characters;
   }

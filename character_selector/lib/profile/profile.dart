@@ -1,4 +1,5 @@
 import 'package:character_selector/models/character.dart';
+import 'package:character_selector/profile/heart.dart';
 import 'package:character_selector/profile/skill_list.dart';
 import 'package:character_selector/profile/stats_table.dart';
 import 'package:character_selector/repository/character_repository.dart';
@@ -28,28 +29,40 @@ class Profile extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              padding: const EdgeInsets.all(16),
-              color: AppColors.secondaryColor.withOpacity(0.3),
-              child: Row(
-                children: [
-                  Image.asset(
-                    'assets/img/vocations/${character.vocation.image}',
-                    width: 140,
-                    height: 140,
+            Stack(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  color: AppColors.secondaryColor.withOpacity(0.3),
+                  child: Row(
+                    children: [
+                      Hero(
+                        tag: character.id,
+                        child: Image.asset(
+                          'assets/img/vocations/${character.vocation.image}',
+                          width: 140,
+                          height: 140,
+                        ),
+                      ),
+                      const SizedBox(width: 20),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            StyledHeading(character.vocation.title),
+                            StyledText(character.vocation.description),
+                          ],
+                        ),
+                      )
+                    ],
                   ),
-                  const SizedBox(width: 20),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        StyledHeading(character.vocation.title),
-                        StyledText(character.vocation.description),
-                      ],
-                    ),
-                  )
-                ],
-              ),
+                ),
+                Positioned(
+                  top: 10,
+                  right: 10,
+                  child: Heart(character: character),
+                ),
+              ],
             ),
             const SizedBox(height: 20),
             Center(
