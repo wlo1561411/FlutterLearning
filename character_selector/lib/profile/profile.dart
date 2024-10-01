@@ -6,11 +6,10 @@ import 'package:character_selector/repository/character_repository.dart';
 import 'package:character_selector/shared/styled_button.dart';
 import 'package:character_selector/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../shared/styled_text.dart';
 
-class Profile extends StatelessWidget {
+class Profile extends ConsumerWidget {
   const Profile({
     super.key,
     required this.character,
@@ -19,7 +18,7 @@ class Profile extends StatelessWidget {
   final Character character;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: StyledTitle(character.name),
@@ -107,8 +106,7 @@ class Profile extends StatelessWidget {
             ),
             StyledButton(
               onPressed: () {
-                Provider.of<CharacterRepository>(context, listen: false)
-                    .put(character);
+                ref.read(characterRepositoryProvider.notifier).put(character);
 
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(

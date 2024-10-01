@@ -6,21 +6,21 @@ import 'package:character_selector/repository/character_repository.dart';
 import 'package:character_selector/shared/styled_button.dart';
 import 'package:character_selector/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 import '../shared/styled_text.dart';
 
 var uuid = const Uuid();
 
-class CreateScreen extends StatefulWidget {
+class CreateScreen extends ConsumerStatefulWidget {
   const CreateScreen({super.key});
 
   @override
-  State<CreateScreen> createState() => _CreateScreenState();
+  ConsumerState<CreateScreen> createState() => _CreateScreenState();
 }
 
-class _CreateScreenState extends State<CreateScreen> {
+class _CreateScreenState extends ConsumerState<CreateScreen> {
   final _nameTextController = TextEditingController();
   final _sloganTextController = TextEditingController();
 
@@ -82,13 +82,13 @@ class _CreateScreenState extends State<CreateScreen> {
       return;
     }
 
-    Provider.of<CharacterRepository>(context, listen: false).post(
-      Character(
-          id: uuid.v4(),
-          name: _nameTextController.text,
-          slogan: _sloganTextController.text,
-          vocation: selectedVocation),
-    );
+    ref.read(characterRepositoryProvider.notifier).post(
+          Character(
+              id: uuid.v4(),
+              name: _nameTextController.text,
+              slogan: _sloganTextController.text,
+              vocation: selectedVocation),
+        );
 
     Navigator.pop(
       context,

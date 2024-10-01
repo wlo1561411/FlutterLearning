@@ -1,38 +1,43 @@
-import 'package:flutter/material.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../models/character.dart';
 import 'dart:convert';
-import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class CharacterRepository extends ChangeNotifier {
-  List<Character> _characters = [];
+part 'character_repository.g.dart';
+
+@riverpod
+class CharacterRepository extends _$CharacterRepository {
+  @override
+  List<Character> build() {
+    return const [];
+  }
 
   CharacterRepository() {
     _loadFromLocal();
   }
 
   void post(Character character) {
-    _characters.add(character);
-    notifyListeners();
-    _saveToLocal();
+    if (!state.contains(character)) {
+      state = [...state, character];
+      _saveToLocal();
+    }
   }
 
   void delete(Character character) {
-    _characters.remove(character);
-    notifyListeners();
-    _saveToLocal();
-  }
-
-  List<Character> get() {
-    return _characters;
+    if (state.contains(character)) {
+      state = state.where((c) => c.id != character.id).toList();
+      _saveToLocal();
+    }
   }
 
   void put(Character updatedCharacter) {
-    final index = _characters.indexWhere((character) => character.id == updatedCharacter.id);
+    final index =
+        state.indexWhere((character) => character.id == updatedCharacter.id);
 
     if (index != -1) {
-      _characters[index] = updatedCharacter;
-      notifyListeners();
+      List<Character> updated = state;
+      state[index] = updatedCharacter;
+      state = updated;
       _saveToLocal();
     }
   }
@@ -43,16 +48,14 @@ class CharacterRepository extends ChangeNotifier {
 
     if (charactersJson != null) {
       List<dynamic> charactersMap = jsonDecode(charactersJson);
-      _characters = charactersMap.map((json) => Character.fromJson(json)).toList();
+      state = charactersMap.map((json) => Character.fromJson(json)).toList();
     }
-
-    notifyListeners();
   }
 
   Future<void> _saveToLocal() async {
     final prefs = await SharedPreferences.getInstance();
-    final String charactersJson = jsonEncode(_characters.map((c) => c.toJson()).toList());
+    final String charactersJson =
+        jsonEncode(state.map((c) => c.toJson()).toList());
     await prefs.setString('characters', charactersJson);
   }
 }
-

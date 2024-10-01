@@ -1,21 +1,24 @@
 import 'package:character_selector/create/create_screen.dart';
 import 'package:character_selector/home/character_card.dart';
+import 'package:character_selector/models/character.dart';
 import 'package:character_selector/repository/character_repository.dart';
 import 'package:character_selector/shared/styled_button.dart';
 import 'package:character_selector/shared/styled_text.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class Home extends StatefulWidget {
+class Home extends ConsumerStatefulWidget {
   const Home({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  ConsumerState<Home> createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends ConsumerState<Home> {
   @override
   Widget build(BuildContext context) {
+    List<Character> characters = ref.watch(characterRepositoryProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: const StyledTitle('Your Character'),
@@ -26,21 +29,18 @@ class _HomeState extends State<Home> {
         child: Column(
           children: [
             Expanded(
-              child: Consumer<CharacterRepository>(
-                builder: (context, repo, child) {
-                  return ListView.builder(
-                      itemCount: repo.get().length,
-                      itemBuilder: (_, index) {
-                        return Dismissible(
-                          key: ValueKey(repo.get()[index].id),
-                          onDismissed: (direction) {
-                            Provider.of<CharacterRepository>(context, listen: false)
-                                .delete(repo.get()[index]);
-                          }, 
-                          child: CharacterCard(repo.get()[index]));
-                      });
-                }
-              ),
+              child: ListView.builder(
+                  itemCount: characters.length,
+                  itemBuilder: (_, index) {
+                    return Dismissible(
+                        key: ValueKey(characters[index].id),
+                        onDismissed: (direction) {
+                          ref
+                              .read(characterRepositoryProvider.notifier)
+                              .delete(characters[index]);
+                        },
+                        child: CharacterCard(characters[index]));
+                  }),
             ),
             StyledButton(
                 onPressed: () {
