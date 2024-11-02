@@ -19,9 +19,7 @@ class _BottomNavigationWrapperState extends State<BottomNavigationWrapper> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: widget.child,
-      ),
+      body: widget.child,
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: widget.child.currentIndex,
@@ -32,7 +30,7 @@ class _BottomNavigationWrapperState extends State<BottomNavigationWrapper> {
           );
           setState(() {});
         },
-        items: AppRoute.values
+        items: TabRoute.values
             .map((e) => BottomNavigationBarItem(
                   icon: Icon(e.unselectedIcon),
                   activeIcon: Icon(e.selectedIcon),

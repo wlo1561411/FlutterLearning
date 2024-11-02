@@ -1,28 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:sharing/router/router.dart';
 
-enum AppRoute {
+enum TabRoute {
   general,
   scroll,
   list,
   grid,
 }
 
-extension Path on AppRoute {
-  String get path => '/$text';
-
-  String get text {
-    switch (this) {
-      case AppRoute.general:
-        return 'general';
-      case AppRoute.scroll:
-        return 'scroll';
-      case AppRoute.list:
-        return 'list';
-      case AppRoute.grid:
-        return 'grid';
-    }
-  }
+extension Tab on TabRoute {
+  String get path => '/${toString().split('.').last}';
+  String get text => toString().split('.').last.capitalizeFirstLetter() ?? '';
 
   IconData get unselectedIcon {
     return Icons.check_circle_outline;
@@ -33,6 +20,31 @@ extension Path on AppRoute {
   }
 }
 
-final routes = [
-  AppRouter.tabRoute(),
-];
+enum GeneralRoute {
+  text,
+  image,
+  button,
+  gesture,
+  row,
+  column,
+  stack,
+  card,
+  textField,
+}
+
+extension General on GeneralRoute {
+  String get path => '/${toString().split('.').last}';
+  String get text => toString().split('.').last.capitalizeFirstLetter() ?? '';
+}
+
+extension Capitalize on String {
+  String capitalizeFirstLetter() {
+    final input = this;
+
+    if (input.isEmpty) {
+      return input;
+    }
+
+    return input[0].toUpperCase() + input.substring(1);
+  }
+}

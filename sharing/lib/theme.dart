@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class AppColors {
   static Color primaryColor = const Color.fromRGBO(162, 29, 19, 1);
@@ -60,6 +61,17 @@ ThemeData primaryTheme = ThemeData(
       fontWeight: FontWeight.bold,
       letterSpacing: 2,
     ),
+  ),
+
+  // card
+  cardTheme: CardTheme(
+    color: AppColors.secondaryColor.withOpacity(0.5),
+    surfaceTintColor: Colors.transparent,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(5)),
+    ),
+    shadowColor: Colors.transparent,
+    margin: const EdgeInsets.only(bottom: 16),
   ),
 
   // input decoration
