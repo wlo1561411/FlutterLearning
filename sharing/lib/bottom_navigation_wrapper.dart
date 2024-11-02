@@ -35,6 +35,7 @@ class _BottomNavigationWrapperState extends State<BottomNavigationWrapper> {
         items: AppRoute.values
             .map((e) => BottomNavigationBarItem(
                   icon: Icon(e.unselectedIcon),
+                  activeIcon: Icon(e.selectedIcon),
                   label: e.text,
                 ))
             .toList(),

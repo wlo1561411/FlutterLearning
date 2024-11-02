@@ -25,16 +25,11 @@ extension Path on AppRoute {
   }
 
   IconData get unselectedIcon {
-    switch (this) {
-      case AppRoute.general:
-        return Icons.filter_1_outlined;
-      case AppRoute.scroll:
-        return Icons.filter_2_outlined;
-      case AppRoute.list:
-        return Icons.filter_3_outlined;
-      case AppRoute.grid:
-        return Icons.filter_4_outlined;
-    }
+    return Icons.check_circle_outline;
+  }
+
+  IconData get selectedIcon {
+    return Icons.check_circle;
   }
 }
 

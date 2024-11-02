@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:sharing/router/router.dart';
+import 'package:sharing/theme.dart';
 
 void main() {
   AppRouter();
@@ -13,6 +13,8 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      theme: primaryTheme,
+      darkTheme: primaryTheme,
       routerConfig: AppRouter.router,
     );
   }

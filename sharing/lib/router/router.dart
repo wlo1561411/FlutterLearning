@@ -5,7 +5,7 @@ import 'package:sharing/pages/grid_page.dart';
 import 'package:sharing/pages/list_page.dart';
 import 'package:sharing/pages/scroll_page.dart';
 import 'package:sharing/router/route.dart';
-import 'package:sharing/pages/bottom_navigation_wrapper.dart';
+import 'package:sharing/bottom_navigation_wrapper.dart';
 
 class AppRouter {
   static final AppRouter _shared = AppRouter._init();
