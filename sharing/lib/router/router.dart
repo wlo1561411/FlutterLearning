@@ -9,19 +9,10 @@ import 'package:sharing/router/route.dart';
 import 'package:sharing/bottom_navigation_wrapper.dart';
 
 final _routes = [
-  AppRouter.tabRoute(),
-  GoRoute(path: GeneralRoute.text.path, builder: (context, state) {
-    return const TextPage();
-  }),
+  AppRouterConfiguration.tabRoute(),
 ];
 
-class AppRouter {
-  static final AppRouter _shared = AppRouter._init();
-
-  factory AppRouter() {
-    return _shared;
-  }
-
+class AppRouterConfiguration {
   static final GlobalKey<NavigatorState> _parentKey =
       GlobalKey<NavigatorState>();
   static final GlobalKey<NavigatorState> _generalKey =
@@ -31,10 +22,8 @@ class AppRouter {
   static final GlobalKey<NavigatorState> _listKey = GlobalKey<NavigatorState>();
   static final GlobalKey<NavigatorState> _gridKey = GlobalKey<NavigatorState>();
 
-  static late final GoRouter router;
-
-  AppRouter._init() {
-    router = GoRouter(
+  GoRouter getRouter() {
+    return GoRouter(
       navigatorKey: _parentKey,
       initialLocation: TabRoute.general.path,
       routes: _routes,

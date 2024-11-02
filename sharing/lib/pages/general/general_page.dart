@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sharing/router/route.dart';
-import 'package:sharing/router/router.dart';
 import 'package:sharing/shared/scaffold_builder.dart';
 
 class GeneralPage extends StatelessWidget {
@@ -19,7 +19,7 @@ class GeneralPage extends StatelessWidget {
         itemExtent: 60,
         itemBuilder: (ctx, index) {
           return GestureDetector(
-            onTap: () => AppRouter.router.push(items[index].path),
+            onTap: () => context.goNamed('text'),
             child: Card(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),

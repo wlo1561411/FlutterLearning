@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sharing/router/router.dart';
 import 'package:sharing/theme.dart';
 
+late GoRouter _router;
+
 void main() {
-  AppRouter();
+  _router = AppRouterConfiguration().getRouter();
   runApp(const App());
 }
 
@@ -15,7 +18,7 @@ class App extends StatelessWidget {
     return MaterialApp.router(
       theme: primaryTheme,
       darkTheme: primaryTheme,
-      routerConfig: AppRouter.router,
+      routerConfig: _router,
     );
   }
 }
