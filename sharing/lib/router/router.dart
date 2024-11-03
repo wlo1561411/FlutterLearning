@@ -20,7 +20,8 @@ class AppRouterConfiguration {
 }
 
 extension TypedGoRouteInfo on TypedGoRoute {
-  String get title => path.replaceFirstMapped('/', (s) => '').capitalizeFirstLetter();
+  String get title =>
+      path.replaceFirstMapped('/', (s) => '').capitalizeFirstLetter();
 }
 
 extension Capitalize on String {

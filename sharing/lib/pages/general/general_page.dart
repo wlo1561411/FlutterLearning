@@ -23,7 +23,7 @@ class GeneralPage extends StatelessWidget {
           final item = items[index];
 
           return GestureDetector(
-            onTap: () => context.push('${generalRouteType.path}${item.path}'),
+            onTap: () => ctx.push('${generalRouteType.path}${item.path}'),
             child: Card(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),

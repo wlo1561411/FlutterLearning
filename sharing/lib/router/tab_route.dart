@@ -12,7 +12,7 @@ part 'tab_route.g.dart';
 List<RouteBase> tabShellRoutes = $appRoutes;
 
 final List<TypedGoRoute> tabRouteTypes = [
-  gridRouteType,
+  generalRouteType,
   scrollRouteType,
   listRouteType,
   gridRouteType,
