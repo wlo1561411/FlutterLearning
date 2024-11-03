@@ -170,7 +170,11 @@ class TextPage extends StatelessWidget {
 extension _Wrap on Widget {
   Widget wrapped({Color color = Colors.black26}) {
     return Container(
-      color: color,
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(10),
+        // borderRadius: const BorderRadius.all(Radius.circular(10)),
+      ),
       padding: const EdgeInsets.all(16),
       margin: const EdgeInsets.only(bottom: 16),
       child: this,

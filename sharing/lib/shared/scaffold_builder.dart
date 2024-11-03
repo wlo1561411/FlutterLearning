@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class ScaffoldBuilder {
   static Scaffold title({
     String appBarTitle = '',
+    Color? backgroundColor,
     required BuildContext context,
     required Widget body,
   }) {
@@ -15,6 +16,7 @@ class ScaffoldBuilder {
               ),
             )
           : null,
+      backgroundColor: backgroundColor,
       body: body,
     );
   }

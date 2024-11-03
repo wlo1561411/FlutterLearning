@@ -63,6 +63,35 @@ ThemeData primaryTheme = ThemeData(
     ),
   ),
 
+  // elevatedButton
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      foregroundColor: Colors.white,
+      backgroundColor: AppColors.primaryAccent,
+      disabledForegroundColor: Colors.grey,
+      disabledBackgroundColor: AppColors.primaryAccent.withOpacity(0.5),
+      iconColor: Colors.white,
+      disabledIconColor: Colors.grey,
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(5),
+      ),
+    ),
+  ),
+
+  // outlinedButton
+  outlinedButtonTheme: OutlinedButtonThemeData(
+    style: OutlinedButton.styleFrom(
+      side: BorderSide(
+        color: AppColors.primaryAccent,
+        width: 2.0,
+      ),
+      foregroundColor: Colors.white,
+      backgroundColor: AppColors.primaryColor,
+      disabledForegroundColor: Colors.grey,
+    )
+  ),
+
   // card
   cardTheme: CardTheme(
     color: AppColors.secondaryColor.withOpacity(0.5),
