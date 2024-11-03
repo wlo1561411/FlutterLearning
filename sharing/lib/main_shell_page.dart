@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sharing/router/route.dart';
+import 'package:sharing/router/router.dart';
 
-class BottomNavigationWrapper extends StatefulWidget {
-  const BottomNavigationWrapper({
+class MainShellPage extends StatefulWidget {
+  const MainShellPage({
     super.key,
+    required this.tabRouteTypes,
     required this.child,
   });
 
+  final List<TypedGoRoute> tabRouteTypes;
   final StatefulNavigationShell child;
 
   @override
-  State<BottomNavigationWrapper> createState() =>
-      _BottomNavigationWrapperState();
+  State<MainShellPage> createState() =>
+      _MainShellPageState();
 }
 
-class _BottomNavigationWrapperState extends State<BottomNavigationWrapper> {
+class _MainShellPageState extends State<MainShellPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,11 +32,11 @@ class _BottomNavigationWrapperState extends State<BottomNavigationWrapper> {
           );
           setState(() {});
         },
-        items: TabRoute.values
+        items: widget.tabRouteTypes
             .map((e) => BottomNavigationBarItem(
-                  icon: Icon(e.unselectedIcon),
-                  activeIcon: Icon(e.selectedIcon),
-                  label: e.text,
+                  icon: const Icon(Icons.circle_outlined),
+                  activeIcon: const Icon(Icons.check_circle),
+                  label: e.title,
                 ))
             .toList(),
       ),

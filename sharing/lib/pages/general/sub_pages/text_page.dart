@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sharing/router/route.dart';
 import 'package:sharing/shared/scaffold_builder.dart';
 
 class TextPage extends StatelessWidget {
@@ -12,7 +11,7 @@ class TextPage extends StatelessWidget {
     print(currentLocation);
 
     return ScaffoldBuilder.title(
-      appBarTitle: GeneralRoute.text.text,
+      appBarTitle: 'Text',
       context: context,
       body: Placeholder(),
     );

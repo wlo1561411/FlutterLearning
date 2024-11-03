@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sharing/bottom_navigation_wrapper.dart';
 
 class GridPage extends StatelessWidget {
   const GridPage({super.key});

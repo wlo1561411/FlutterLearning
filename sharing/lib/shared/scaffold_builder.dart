@@ -9,11 +9,11 @@ class ScaffoldBuilder {
     return Scaffold(
       appBar: appBarTitle.isNotEmpty
           ? AppBar(
-        title: Text(
-          appBarTitle,
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
-      )
+              title: Text(
+                appBarTitle,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+            )
           : null,
       body: body,
     );
