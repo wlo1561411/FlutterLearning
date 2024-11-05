@@ -62,6 +62,7 @@ const generalRouteType = TypedGoRoute<GeneralRoute>(
   routes: [
     textRouteType,
     buttonRouteType,
+    imageRouteType,
   ],
 );
 

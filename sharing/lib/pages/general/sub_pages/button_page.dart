@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sharing/shared/scaffold_builder.dart';
-import 'package:sharing/theme.dart';
 
 /// Source
 /// https://api.flutter.dev/flutter/material/ButtonStyleButton-class.html
@@ -19,27 +18,16 @@ class ButtonPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             elevatedButton(onPressed: null),
-            const SizedBox(height: 10),
             elevatedButton(onPressed: () {}),
-            const SizedBox(height: 10),
             elevatedButton(useTheme: false, onPressed: () {}),
-            const SizedBox(height: 10),
             elevatedButtonIcon(iconAlignment: IconAlignment.start),
-            const SizedBox(height: 10),
             elevatedButtonIcon(iconAlignment: IconAlignment.end),
-            const SizedBox(height: 10),
             filledButton(isTonal: false, onPressed: null),
-            const SizedBox(height: 10),
             filledButton(isTonal: false, onPressed: () {}),
-            const SizedBox(height: 10),
             filledButton(onPressed: () {}),
-            const SizedBox(height: 10),
             outlinedButton(),
-            const SizedBox(height: 10),
             textButton(),
-            const SizedBox(height: 10),
             shrinkTextButton(),
-            const SizedBox(height: 10),
             iconButton(),
           ],
         ),
@@ -53,7 +41,7 @@ class ButtonPage extends StatelessWidget {
         ? ElevatedButton(
             onPressed: onPressed,
             child: const Text('This is ElevatedButton.'),
-          )
+          ).wrapped()
         : ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.white,
@@ -64,7 +52,7 @@ class ButtonPage extends StatelessWidget {
             ),
             onPressed: onPressed,
             child: const Text('This is ElevatedButton.'),
-          );
+          ).wrapped();
   }
 
   Widget elevatedButtonIcon({required IconAlignment iconAlignment}) {
@@ -73,7 +61,7 @@ class ButtonPage extends StatelessWidget {
       iconAlignment: iconAlignment,
       icon: const Icon(Icons.safety_check),
       label: const Text('This is ElevatedButton.icon.'),
-    );
+    ).wrapped();
   }
 
   Widget filledButton(
@@ -82,18 +70,18 @@ class ButtonPage extends StatelessWidget {
         ? FilledButton.tonal(
             onPressed: onPressed,
             child: const Text('This is FilledButton.tonal.'),
-          )
+          ).wrapped()
         : FilledButton(
             onPressed: onPressed,
             child: const Text('This is FilledButton.'),
-          );
+          ).wrapped();
   }
 
   Widget outlinedButton() {
     return OutlinedButton(
       onPressed: () {},
       child: const Text('This is OutlinedButton.'),
-    );
+    ).wrapped();
   }
 
   Widget textButton() {
@@ -106,7 +94,7 @@ class ButtonPage extends StatelessWidget {
         ),
         child: const Text('This is TextButton.'),
       ),
-    );
+    ).wrapped();
   }
 
   Widget shrinkTextButton() {
@@ -124,7 +112,7 @@ class ButtonPage extends StatelessWidget {
         ),
         child: const Text('This is TextButton.'),
       ),
-    );
+    ).wrapped();
   }
 
   Widget iconButton() {
@@ -134,6 +122,15 @@ class ButtonPage extends StatelessWidget {
         width: 50,
         child: Image.asset('assets/about_logo_icon.png'),
       ),
+    ).wrapped();
+  }
+}
+
+extension _Wrap on Widget {
+  Widget wrapped({Color color = Colors.black26}) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: this,
     );
   }
 }
