@@ -30,7 +30,6 @@ class _MainShellPageState extends State<MainShellPage> {
             index,
             initialLocation: index == widget.child.currentIndex,
           );
-          setState(() {});
         },
         items: widget.tabRouteTypes
             .map((e) => BottomNavigationBarItem(

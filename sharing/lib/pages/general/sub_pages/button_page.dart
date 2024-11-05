@@ -28,13 +28,19 @@ class ButtonPage extends StatelessWidget {
             const SizedBox(height: 10),
             elevatedButtonIcon(iconAlignment: IconAlignment.end),
             const SizedBox(height: 10),
-            filledButton(onPressed: null),
-            const SizedBox(height: 10),
-            filledButton(onPressed: () {}),
+            filledButton(isTonal: false, onPressed: null),
             const SizedBox(height: 10),
             filledButton(isTonal: false, onPressed: () {}),
             const SizedBox(height: 10),
+            filledButton(onPressed: () {}),
+            const SizedBox(height: 10),
             outlinedButton(),
+            const SizedBox(height: 10),
+            textButton(),
+            const SizedBox(height: 10),
+            shrinkTextButton(),
+            const SizedBox(height: 10),
+            iconButton(),
           ],
         ),
       ),
@@ -75,7 +81,7 @@ class ButtonPage extends StatelessWidget {
     return isTonal
         ? FilledButton.tonal(
             onPressed: onPressed,
-            child: const Text('This is FilledButton.'),
+            child: const Text('This is FilledButton.tonal.'),
           )
         : FilledButton(
             onPressed: onPressed,
@@ -87,6 +93,47 @@ class ButtonPage extends StatelessWidget {
     return OutlinedButton(
       onPressed: () {},
       child: const Text('This is OutlinedButton.'),
+    );
+  }
+
+  Widget textButton() {
+    return TextButton(
+      onPressed: () {},
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.black,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: const Text('This is TextButton.'),
+      ),
+    );
+  }
+
+  Widget shrinkTextButton() {
+    return TextButton(
+      onPressed: () {},
+      style: TextButton.styleFrom(
+        padding: EdgeInsets.zero,
+        minimumSize: const Size(0, 0),
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      ),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.black,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: const Text('This is TextButton.'),
+      ),
+    );
+  }
+
+  Widget iconButton() {
+    return TextButton(
+      onPressed: () {},
+      child: SizedBox(
+        width: 50,
+        child: Image.asset('assets/about_logo_icon.png'),
+      ),
     );
   }
 }
