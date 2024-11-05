@@ -15,15 +15,15 @@ class ImagePage extends StatelessWidget {
           child: Column(
             children: [
               // networkImage(),
-              imageBoxFit(BoxFit.none), // 不縮放，保持原始大小
-              imageBoxFit(BoxFit.contain), // 縮放以適應容器，保持寬高比
-              imageBoxFit(BoxFit.cover), // 縮放以填滿容器，可能會裁剪圖像
-              imageBoxFit(BoxFit.fill), // 拉伸以完全填滿容器，不保持寬高比
-              imageBoxFit(BoxFit.fitWidth), // 縮放以適應容器的寬度，保持寬高比
-              imageBoxFit(BoxFit.fitHeight), // 縮放以適應容器的高度，保持寬高比
-              imageBoxFit(BoxFit.scaleDown), // 在小於容器時不縮放，大於容器時縮小以適應容器
-              withoutClipRRect(),
-              clipRRect(),
+              _imageBoxFit(BoxFit.none), // 不縮放，保持原始大小
+              _imageBoxFit(BoxFit.contain), // 縮放以適應容器，保持寬高比
+              _imageBoxFit(BoxFit.cover), // 縮放以填滿容器，可能會裁剪圖像
+              _imageBoxFit(BoxFit.fill), // 拉伸以完全填滿容器，不保持寬高比
+              _imageBoxFit(BoxFit.fitWidth), // 縮放以適應容器的寬度，保持寬高比
+              _imageBoxFit(BoxFit.fitHeight), // 縮放以適應容器的高度，保持寬高比
+              _imageBoxFit(BoxFit.scaleDown), // 在小於容器時不縮放，大於容器時縮小以適應容器
+              _withoutClipRRect(),
+              _clipRRect(),
             ],
           ),
         ),
@@ -31,7 +31,7 @@ class ImagePage extends StatelessWidget {
     );
   }
 
-  Widget imageBoxFit(BoxFit fit) {
+  Widget _imageBoxFit(BoxFit fit) {
     return Container(
       color: Colors.grey,
       width: 200,
@@ -44,7 +44,7 @@ class ImagePage extends StatelessWidget {
     );
   }
 
-  Widget withoutClipRRect() {
+  Widget _withoutClipRRect() {
     return Container(
       width: 200,
       height: 150,
@@ -59,7 +59,7 @@ class ImagePage extends StatelessWidget {
     );
   }
 
-  Widget clipRRect() {
+  Widget _clipRRect() {
     return Container(
       width: 200,
       height: 150,
@@ -77,7 +77,7 @@ class ImagePage extends StatelessWidget {
     );
   }
 
-  Widget networkImage() {
+  Widget _networkImage() {
     return Container(
       width: 300,
       height: 150,

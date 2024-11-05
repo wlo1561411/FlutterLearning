@@ -17,29 +17,29 @@ class TextPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            normal(),
-            withTheme(context),
-            align(context, TextAlign.center),
-            maxLine(context),
-            maxLine(context, maxLines: 2),
-            maxLine(context, maxLines: 2, overflow: TextOverflow.ellipsis),
-            richText(),
-            richTextWithClick(context),
-            gradient(),
+            _normal(),
+            _withTheme(context),
+            _align(context, TextAlign.center),
+            _maxLine(context),
+            _maxLine(context, maxLines: 2),
+            _maxLine(context, maxLines: 2, overflow: TextOverflow.ellipsis),
+            _richText(),
+            _richTextWithClick(context),
+            _gradient(),
           ],
         ),
       ),
     );
   }
 
-  Widget normal() {
+  Widget _normal() {
     return const Text(
       'This is normal text.',
       style: TextStyle(color: Colors.yellow),
     ).wrapped();
   }
 
-  Widget withTheme(BuildContext context) {
+  Widget _withTheme(BuildContext context) {
     return Text(
       'This is normal text.',
       style: Theme
@@ -50,7 +50,7 @@ class TextPage extends StatelessWidget {
     ).wrapped();
   }
 
-  Widget align(BuildContext context, TextAlign align) {
+  Widget _align(BuildContext context, TextAlign align) {
     return Text(
       'This is normal text.',
       textAlign: align,
@@ -61,7 +61,7 @@ class TextPage extends StatelessWidget {
     ).wrapped();
   }
 
-  Widget maxLine(BuildContext context,
+  Widget _maxLine(BuildContext context,
       {int? maxLines, TextOverflow? overflow}) {
     return Text(
       'This is normal text.This is normal text.This is normal text.This is normal text.',
@@ -74,7 +74,7 @@ class TextPage extends StatelessWidget {
     ).wrapped();
   }
 
-  Widget richText() {
+  Widget _richText() {
     return RichText(
       text: const TextSpan(
         style: TextStyle(
@@ -103,7 +103,7 @@ class TextPage extends StatelessWidget {
     ).wrapped();
   }
 
-  Widget richTextWithClick(BuildContext context) {
+  Widget _richTextWithClick(BuildContext context) {
     return RichText(
       text: TextSpan(
         style: const TextStyle(
@@ -120,7 +120,7 @@ class TextPage extends StatelessWidget {
             ),
             recognizer: TapGestureRecognizer()
               ..onTap = () {
-                showSnackBar(context, 'bold text');
+                _showSnackBar(context, 'bold text');
               },
           ),
           const TextSpan(text: 'and this is '),
@@ -132,7 +132,7 @@ class TextPage extends StatelessWidget {
             ),
             recognizer: TapGestureRecognizer()
               ..onTap = () {
-                showSnackBar(context, 'italic text');
+                _showSnackBar(context, 'italic text');
               },
           ),
         ],
@@ -140,7 +140,7 @@ class TextPage extends StatelessWidget {
     ).wrapped();
   }
 
-  Widget gradient() {
+  Widget _gradient() {
     return ShaderMask(
       shaderCallback: (bounds) =>
           const LinearGradient(
@@ -158,7 +158,7 @@ class TextPage extends StatelessWidget {
     ).wrapped();
   }
 
-  void showSnackBar(BuildContext context, String text) {
+  void _showSnackBar(BuildContext context, String text) {
     final snackBar = SnackBar(
       content: Text(text),
       duration: const Duration(milliseconds: 500),

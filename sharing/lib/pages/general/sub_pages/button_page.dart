@@ -17,25 +17,28 @@ class ButtonPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            elevatedButton(onPressed: null),
-            elevatedButton(onPressed: () {}),
-            elevatedButton(useTheme: false, onPressed: () {}),
-            elevatedButtonIcon(iconAlignment: IconAlignment.start),
-            elevatedButtonIcon(iconAlignment: IconAlignment.end),
-            filledButton(isTonal: false, onPressed: null),
-            filledButton(isTonal: false, onPressed: () {}),
-            filledButton(onPressed: () {}),
-            outlinedButton(),
-            textButton(),
-            shrinkTextButton(),
-            iconButton(),
+            _elevatedButton(onPressed: null),
+            _elevatedButton(onPressed: () {}),
+            _elevatedButton(useTheme: false, onPressed: () {}),
+            _elevatedButtonIcon(iconAlignment: IconAlignment.start),
+            _elevatedButtonIcon(iconAlignment: IconAlignment.end),
+            _filledButton(isTonal: false, onPressed: null),
+            _filledButton(isTonal: false, onPressed: () {}),
+            _filledButton(onPressed: () {}),
+            _outlinedButton(),
+            _textButton(),
+            _shrinkTextButton(),
+            _iconButton(),
+            _inkWellCorrectIconButton(),
+            _multipleStateIconButton(),
+            _gradient(),
           ],
         ),
       ),
     );
   }
 
-  Widget elevatedButton(
+  Widget _elevatedButton(
       {bool useTheme = true, required void Function()? onPressed}) {
     return useTheme
         ? ElevatedButton(
@@ -55,7 +58,7 @@ class ButtonPage extends StatelessWidget {
           ).wrapped();
   }
 
-  Widget elevatedButtonIcon({required IconAlignment iconAlignment}) {
+  Widget _elevatedButtonIcon({required IconAlignment iconAlignment}) {
     return ElevatedButton.icon(
       onPressed: () {},
       iconAlignment: iconAlignment,
@@ -64,7 +67,7 @@ class ButtonPage extends StatelessWidget {
     ).wrapped();
   }
 
-  Widget filledButton(
+  Widget _filledButton(
       {bool isTonal = true, required void Function()? onPressed}) {
     return isTonal
         ? FilledButton.tonal(
@@ -77,14 +80,14 @@ class ButtonPage extends StatelessWidget {
           ).wrapped();
   }
 
-  Widget outlinedButton() {
+  Widget _outlinedButton() {
     return OutlinedButton(
       onPressed: () {},
       child: const Text('This is OutlinedButton.'),
     ).wrapped();
   }
 
-  Widget textButton() {
+  Widget _textButton() {
     return TextButton(
       onPressed: () {},
       child: Container(
@@ -97,7 +100,7 @@ class ButtonPage extends StatelessWidget {
     ).wrapped();
   }
 
-  Widget shrinkTextButton() {
+  Widget _shrinkTextButton() {
     return TextButton(
       onPressed: () {},
       style: TextButton.styleFrom(
@@ -115,14 +118,99 @@ class ButtonPage extends StatelessWidget {
     ).wrapped();
   }
 
-  Widget iconButton() {
+  Widget _iconButton() {
     return TextButton(
       onPressed: () {},
-      child: SizedBox(
-        width: 50,
-        child: Image.asset('assets/about_logo_icon.png'),
+      style: TextButton.styleFrom(
+        padding: EdgeInsets.zero,
+        minimumSize: const Size(0, 0),
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      ),
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: Colors.white.withOpacity(0.2),
+          borderRadius: BorderRadius.circular(4),
+        ),
+        child: _heytok(),
       ),
     ).wrapped();
+  }
+
+  Widget _inkWellCorrectIconButton() {
+    return TextButton(
+      onPressed: () {},
+      style: TextButton.styleFrom(
+        padding: const EdgeInsets.all(10),
+        minimumSize: const Size(0, 0),
+        backgroundColor: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(4),
+        ),
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      ),
+      child: _heytok(),
+    ).wrapped();
+  }
+
+  Widget _multipleStateIconButton() {
+    return TextButton(
+      onPressed: () {},
+      style: ButtonStyle(
+        backgroundColor: WidgetStateProperty.all(Colors.white),
+        padding: WidgetStateProperty.all(const EdgeInsets.all(10)),
+        shape: WidgetStateProperty.resolveWith((states) {
+          bool isPressed = states.contains(WidgetState.pressed);
+          return RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(isPressed ? 20 : 4),
+          );
+        }),
+        overlayColor:
+            WidgetStateProperty.all(Colors.green.withOpacity(0.2) // ink color
+                ),
+      ),
+      child: _heytok(),
+    ).wrapped();
+  }
+
+  Widget _gradient() {
+    return TextButton(
+        onPressed: () {},
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Colors.blue, Colors.purple, Colors.red],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            borderRadius: BorderRadius.all(Radius.circular(5)),
+          ),
+          child: const Text(
+            'This is Gradient TextButton.',
+            style: TextStyle(color: Colors.white),
+          ),
+        ));
+  }
+
+  Widget _heytok() {
+    return Column(
+      children: [
+        SizedBox(
+          width: 50,
+          child: Image.asset('assets/about_logo_icon.png'),
+        ),
+        const SizedBox(width: 8),
+        const Text(
+          'Heytok',
+          style: TextStyle(
+            color: Colors.green,
+            fontSize: 16,
+            letterSpacing: 1,
+          ),
+        ),
+      ],
+    );
   }
 }
 
