@@ -5,14 +5,14 @@ import 'package:sharing/router/router.dart';
 import 'package:sharing/router/tab_route.dart';
 import 'package:sharing/shared/scaffold_builder.dart';
 
-class GeneralPage extends StatelessWidget {
+class GeneralPage extends StatelessWidget with ScaffoldBuilder {
   const GeneralPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     List<TypedGoRoute> items = generalRouteTypes;
 
-    return ScaffoldBuilder.title(
+    return scaffold(
       appBarTitle: 'General',
       context: context,
       body: ListView.builder(

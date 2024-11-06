@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:sharing/shared/scaffold_builder.dart';
 import 'package:flutter/gestures.dart';
+import 'package:sharing/shared/title_builder.dart';
 
 /// source
 /// https://docs.flutter.dev/ui/widgets/text
-class TextPage extends StatelessWidget {
+class TextPage extends StatelessWidget with ScaffoldBuilder, TitleBuilder {
   const TextPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ScaffoldBuilder.title(
+    return scaffold(
       appBarTitle: 'Text',
       context: context,
       body: SingleChildScrollView(
@@ -17,14 +18,19 @@ class TextPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            title(context, 'Text'),
             _normal(),
             _withTheme(context),
+            title(context, 'TextAlign'),
             _align(context, TextAlign.center),
+            title(context, 'Line limit'),
             _maxLine(context),
             _maxLine(context, maxLines: 2),
             _maxLine(context, maxLines: 2, overflow: TextOverflow.ellipsis),
+            title(context, 'RichText'),
             _richText(),
             _richTextWithClick(context),
+            title(context, 'Gradient'),
             _gradient(),
           ],
         ),
@@ -42,8 +48,7 @@ class TextPage extends StatelessWidget {
   Widget _withTheme(BuildContext context) {
     return Text(
       'This is normal text.',
-      style: Theme
-          .of(context)
+      style: Theme.of(context)
           .textTheme
           .titleMedium
           ?.copyWith(color: Colors.orange),
@@ -54,10 +59,7 @@ class TextPage extends StatelessWidget {
     return Text(
       'This is normal text.',
       textAlign: align,
-      style: Theme
-          .of(context)
-          .textTheme
-          .bodyMedium,
+      style: Theme.of(context).textTheme.bodyMedium,
     ).wrapped();
   }
 
@@ -67,10 +69,7 @@ class TextPage extends StatelessWidget {
       'This is normal text.This is normal text.This is normal text.This is normal text.',
       maxLines: maxLines,
       overflow: overflow,
-      style: Theme
-          .of(context)
-          .textTheme
-          .bodyMedium,
+      style: Theme.of(context).textTheme.bodyMedium,
     ).wrapped();
   }
 
@@ -142,12 +141,11 @@ class TextPage extends StatelessWidget {
 
   Widget _gradient() {
     return ShaderMask(
-      shaderCallback: (bounds) =>
-          const LinearGradient(
-            colors: [Colors.blue, Colors.purple, Colors.red],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ).createShader(bounds),
+      shaderCallback: (bounds) => const LinearGradient(
+        colors: [Colors.blue, Colors.purple, Colors.red],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      ).createShader(bounds),
       child: const Text(
         'This is normal text.',
         style: TextStyle(

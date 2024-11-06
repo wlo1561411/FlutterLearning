@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:sharing/shared/scaffold_builder.dart';
+import 'package:sharing/shared/title_builder.dart';
 
-class ImagePage extends StatelessWidget {
+/// Source
+/// https://api.flutter.dev/flutter/widgets/Image-class.html
+class ImagePage extends StatelessWidget with ScaffoldBuilder, TitleBuilder {
   const ImagePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ScaffoldBuilder.title(
+    return scaffold(
       appBarTitle: 'Image',
       context: context,
       body: SingleChildScrollView(
@@ -14,14 +17,33 @@ class ImagePage extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              // networkImage(),
-              _imageBoxFit(BoxFit.none), // 不縮放，保持原始大小
-              _imageBoxFit(BoxFit.contain), // 縮放以適應容器，保持寬高比
-              _imageBoxFit(BoxFit.cover), // 縮放以填滿容器，可能會裁剪圖像
-              _imageBoxFit(BoxFit.fill), // 拉伸以完全填滿容器，不保持寬高比
-              _imageBoxFit(BoxFit.fitWidth), // 縮放以適應容器的寬度，保持寬高比
-              _imageBoxFit(BoxFit.fitHeight), // 縮放以適應容器的高度，保持寬高比
-              _imageBoxFit(BoxFit.scaleDown), // 在小於容器時不縮放，大於容器時縮小以適應容器
+              title(context, 'Image.network'),
+              _networkImage(),
+
+              title(context, 'BoxFit'),
+
+              /// 不縮放, 保持原始大小
+              _imageBoxFit(BoxFit.none),
+
+              /// 縮放以適應容器, 保持寬高比
+              _imageBoxFit(BoxFit.contain),
+
+              /// 縮放以填滿容器, 可能會裁剪圖像
+              _imageBoxFit(BoxFit.cover),
+
+              /// 拉伸以完全填滿容器, 不保持寬高比
+              _imageBoxFit(BoxFit.fill),
+
+              /// 拉伸以完全填滿容器, 不保持寬高比
+              _imageBoxFit(BoxFit.fitWidth),
+
+              /// 縮放以適應容器的高度, 保持寬高比
+              _imageBoxFit(BoxFit.fitHeight),
+
+              /// 在小於容器時不縮放, 大於容器時縮小以適應容器
+              _imageBoxFit(BoxFit.scaleDown),
+
+              title(context, 'ClipRRect'),
               _withoutClipRRect(),
               _clipRRect(),
             ],
@@ -65,8 +87,9 @@ class ImagePage extends StatelessWidget {
       height: 150,
       margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: Colors.white)),
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: Colors.white),
+      ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
         child: Image.asset(

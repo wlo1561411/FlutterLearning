@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:sharing/shared/scaffold_builder.dart';
+import 'package:sharing/shared/title_builder.dart';
 
 /// Source
 /// https://api.flutter.dev/flutter/material/ButtonStyleButton-class.html
-class ButtonPage extends StatelessWidget {
+class ButtonPage extends StatelessWidget with ScaffoldBuilder, TitleBuilder {
   const ButtonPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ScaffoldBuilder.title(
+    return scaffold(
       appBarTitle: 'Button',
       context: context,
-      backgroundColor: Colors.white70,
+      backgroundColor: Colors.grey,
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            title(context, 'Material Buttons', color: Colors.black87),
             _elevatedButton(onPressed: null),
             _elevatedButton(onPressed: () {}),
             _elevatedButton(useTheme: false, onPressed: () {}),
@@ -31,7 +33,10 @@ class ButtonPage extends StatelessWidget {
             _iconButton(),
             _inkWellCorrectIconButton(),
             _multipleStateIconButton(),
+            title(context, 'InkWell', color: Colors.black87),
             _gradient(),
+            title(context, 'Gesture Detector', color: Colors.black87),
+            _gesture(),
           ],
         ),
       ),
@@ -174,23 +179,37 @@ class ButtonPage extends StatelessWidget {
   }
 
   Widget _gradient() {
-    return TextButton(
-        onPressed: () {},
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Colors.blue, Colors.purple, Colors.red],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-            borderRadius: BorderRadius.all(Radius.circular(5)),
-          ),
-          child: const Text(
-            'This is Gradient TextButton.',
+    return Ink(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Colors.blue, Colors.purple, Colors.red],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.all(Radius.circular(5)),
+      ),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(5),
+        splashColor: Colors.white.withOpacity(0.3),
+        onTap: () {},
+        child: const Padding(
+          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+          child: Text(
+            'This is Gradient Button.',
             style: TextStyle(color: Colors.white),
           ),
-        ));
+        ),
+      ),
+    ).wrapped();
+  }
+
+  Widget _gesture() {
+    return GestureDetector(
+      onTap: () {
+        print('gesture on tapped');
+      },
+      child: _heytok(),
+    ).wrapped();
   }
 
   Widget _heytok() {
@@ -203,11 +222,7 @@ class ButtonPage extends StatelessWidget {
         const SizedBox(width: 8),
         const Text(
           'Heytok',
-          style: TextStyle(
-            color: Colors.green,
-            fontSize: 16,
-            letterSpacing: 1,
-          ),
+          style: TextStyle(color: Colors.green),
         ),
       ],
     );
@@ -215,7 +230,7 @@ class ButtonPage extends StatelessWidget {
 }
 
 extension _Wrap on Widget {
-  Widget wrapped({Color color = Colors.black26}) {
+  Widget wrapped() {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: this,

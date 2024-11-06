@@ -63,6 +63,11 @@ const generalRouteType = TypedGoRoute<GeneralRoute>(
     textRouteType,
     buttonRouteType,
     imageRouteType,
+    rowRouteType,
+    columnRouteType,
+    alignRouteType,
+    stackRouteType,
+    statefulRouteType,
   ],
 );
 

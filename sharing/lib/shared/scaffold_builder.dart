@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ScaffoldBuilder {
-  static Scaffold title({
+mixin ScaffoldBuilder {
+  Scaffold scaffold({
     String appBarTitle = '',
     Color? backgroundColor,
     required BuildContext context,
