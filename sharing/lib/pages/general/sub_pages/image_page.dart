@@ -68,23 +68,22 @@ class ImagePage extends StatelessWidget with ScaffoldBuilder, TitleBuilder {
 
   Widget _withoutClipRRect() {
     return Container(
-      width: 200,
-      height: 150,
       margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
       ),
+      // clipBehavior: Clip.hardEdge,
       child: Image.asset(
         'assets/screen.png',
         fit: BoxFit.fill,
+        width: 200,
+        height: 150,
       ),
     );
   }
 
   Widget _clipRRect() {
     return Container(
-      width: 200,
-      height: 150,
       margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -95,6 +94,8 @@ class ImagePage extends StatelessWidget with ScaffoldBuilder, TitleBuilder {
         child: Image.asset(
           'assets/screen.png',
           fit: BoxFit.fill,
+          width: 200,
+          height: 150,
         ),
       ),
     );

@@ -4,7 +4,7 @@ mixin TitleBuilder {
   Widget title(BuildContext context, String text,
       {Color color = Colors.white}) {
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.only(bottom: 16),
       child: Text(
         text,
         style: Theme.of(context).textTheme.titleMedium?.copyWith(color: color),

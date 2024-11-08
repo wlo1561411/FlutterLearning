@@ -3,7 +3,7 @@ import 'package:sharing/shared/scaffold_builder.dart';
 import 'package:flutter/gestures.dart';
 import 'package:sharing/shared/title_builder.dart';
 
-/// source
+/// Source
 /// https://docs.flutter.dev/ui/widgets/text
 class TextPage extends StatelessWidget with ScaffoldBuilder, TitleBuilder {
   const TextPage({super.key});

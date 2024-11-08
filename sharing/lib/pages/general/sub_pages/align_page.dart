@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:sharing/shared/scaffold_builder.dart';
 import 'package:sharing/shared/title_builder.dart';
 
+/// Source
+/// https://api.flutter.dev/flutter/widgets/Align-class.html
 class AlignPage extends StatelessWidget with ScaffoldBuilder, TitleBuilder {
   const AlignPage({super.key});
 
@@ -21,7 +23,7 @@ class AlignPage extends StatelessWidget with ScaffoldBuilder, TitleBuilder {
             const SizedBox(height: 20),
             _alignment(Alignment.centerLeft),
 
-            /// 子小部件會依據數值撐大
+            /// 會依據子小部件的數值撐大
             title(context, 'Size Factor'),
             _alignmentWithFactor(Alignment.centerRight, 3),
 
@@ -34,7 +36,7 @@ class AlignPage extends StatelessWidget with ScaffoldBuilder, TitleBuilder {
             const SizedBox(height: 20),
             Row(
               children: [
-                _alignmentWithFactor(const Alignment(2, -1), 3),
+                _alignmentWithFactor(const Alignment(1.5, -1), 3),
                 Container(
                   color: Colors.blue,
                   width: 20,
@@ -52,7 +54,7 @@ class AlignPage extends StatelessWidget with ScaffoldBuilder, TitleBuilder {
             const SizedBox(height: 20),
             Row(
               children: [
-                _alignmentWithFactor(const FractionalOffset(1.5, 0), 3),
+                _alignmentWithFactor(const FractionalOffset(1.25, 0), 3),
                 Container(
                   color: Colors.blue,
                   width: 20,

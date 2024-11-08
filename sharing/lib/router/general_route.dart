@@ -3,11 +3,14 @@ import 'package:go_router/go_router.dart';
 import 'package:sharing/pages/general/sub_pages/align_page.dart';
 import 'package:sharing/pages/general/sub_pages/image_page.dart';
 import 'package:sharing/pages/general/sub_pages/stack_page.dart';
+import 'package:sharing/pages/general/sub_pages/stateful_restraint_page.dart';
 import 'package:sharing/pages/general/sub_pages/text_page.dart';
 import 'package:sharing/pages/general/sub_pages/button_page.dart';
 import 'package:sharing/pages/general/sub_pages/stateful_page.dart';
 import 'package:sharing/pages/general/sub_pages/row_page.dart';
 import 'package:sharing/pages/general/sub_pages/column_page.dart';
+import 'package:sharing/pages/general/sub_pages/value_listenable_builder_page.dart';
+import 'package:sharing/pages/general/sub_pages/text_field_page/text_field_page.dart';
 
 part 'general_route.g.dart';
 
@@ -20,6 +23,9 @@ final List<TypedGoRoute> generalRouteTypes = [
   stackRouteType,
   alignRouteType,
   statefulRouteType,
+  statefulRestraintRouteType,
+  valueListenableBuilderRouteType,
+  textFieldRouteType,
 ];
 
 /// Text
@@ -61,20 +67,6 @@ class ImageRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return const ImagePage();
-  }
-}
-
-/// Stateful
-const statefulRouteType = TypedGoRoute<StatefulRoute>(path: '/stateful');
-
-@immutable
-@statefulRouteType
-class StatefulRoute extends GoRouteData {
-  const StatefulRoute();
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const StatefulPage();
   }
 }
 
@@ -131,5 +123,61 @@ class StackRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return const StackPage();
+  }
+}
+
+/// Stateful
+const statefulRouteType = TypedGoRoute<StatefulRoute>(path: '/stateful');
+
+@immutable
+@statefulRouteType
+class StatefulRoute extends GoRouteData {
+  const StatefulRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return const StatefulPage();
+  }
+}
+
+/// Stateful Restraint
+const statefulRestraintRouteType = TypedGoRoute<StatefulRestraintRoute>(path: '/stateful_restraint');
+
+@immutable
+@statefulRestraintRouteType
+class StatefulRestraintRoute extends GoRouteData {
+  const StatefulRestraintRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return const StatefulRestraintPage();
+  }
+}
+
+/// ValueListenableBuilder
+const valueListenableBuilderRouteType = TypedGoRoute<ValueListenableBuilderRoute>(path: '/value_listenable_builder');
+
+@immutable
+@valueListenableBuilderRouteType
+class ValueListenableBuilderRoute extends GoRouteData {
+  const ValueListenableBuilderRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return const ValueListenableBuilderPage();
+  }
+}
+
+/// TextField
+const textFieldRouteType = TypedGoRoute<TextFieldRoute>(path: '/text_field');
+
+@immutable
+@textFieldRouteType
+class TextFieldRoute extends GoRouteData {
+  const TextFieldRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return const TextFieldPage();
   }
 }

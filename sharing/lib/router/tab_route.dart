@@ -68,6 +68,9 @@ const generalRouteType = TypedGoRoute<GeneralRoute>(
     alignRouteType,
     stackRouteType,
     statefulRouteType,
+    statefulRestraintRouteType,
+    valueListenableBuilderRouteType,
+    textFieldRouteType,
   ],
 );
 

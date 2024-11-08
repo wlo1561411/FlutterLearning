@@ -52,7 +52,7 @@ class RowPage extends StatelessWidget with ScaffoldBuilder, TitleBuilder {
             _rowCrossAxisAlignment(CrossAxisAlignment.end),
             _rowCrossAxisAlignment(CrossAxisAlignment.stretch),
 
-            title(context, 'Real case'),
+            title(context, 'By case'),
 
             _listRow('Settings'),
             // _listRow('SettingsSettingsSettingsSettingsSettingsSettingsSettings'),
@@ -121,6 +121,7 @@ class RowPage extends StatelessWidget with ScaffoldBuilder, TitleBuilder {
 
   Widget _listRow(String text) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         const Icon(Icons.settings, color: Colors.grey),
         const SizedBox(width: 10),

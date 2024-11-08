@@ -56,6 +56,11 @@ class StackPage extends StatelessWidget with ScaffoldBuilder, TitleBuilder {
           height: 50,
           color: Colors.green,
         ),
+        Container(
+          width: 50,
+          height: 50,
+          color: Colors.red,
+        ),
       ],
     ).wrapped();
   }
@@ -65,8 +70,6 @@ class StackPage extends StatelessWidget with ScaffoldBuilder, TitleBuilder {
       fit: fit,
       children: [
         Container(
-          width: double.infinity,
-          height: double.infinity,
           color: Colors.blue.withOpacity(0.2),
         ),
         Container(
@@ -77,6 +80,7 @@ class StackPage extends StatelessWidget with ScaffoldBuilder, TitleBuilder {
         Positioned(
           top: 20,
           left: 20,
+          // right: 20,
           child: Container(
             width: 100,
             height: 100,

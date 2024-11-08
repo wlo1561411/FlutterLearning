@@ -34,7 +34,8 @@ class ButtonPage extends StatelessWidget with ScaffoldBuilder, TitleBuilder {
             _inkWellCorrectIconButton(),
             _multipleStateIconButton(),
             title(context, 'InkWell', color: Colors.black87),
-            _gradient(),
+            _gradientButton(),
+            _gradientIntWell(),
             title(context, 'Gesture Detector', color: Colors.black87),
             _gesture(),
           ],
@@ -170,15 +171,46 @@ class ButtonPage extends StatelessWidget with ScaffoldBuilder, TitleBuilder {
             borderRadius: BorderRadius.circular(isPressed ? 20 : 4),
           );
         }),
-        overlayColor:
-            WidgetStateProperty.all(Colors.green.withOpacity(0.2) // ink color
-                ),
+        // ink color
+        overlayColor: WidgetStateProperty.all(Colors.green.withOpacity(0.2)),
       ),
       child: _heytok(),
     ).wrapped();
   }
 
-  Widget _gradient() {
+  Widget _gradientButton() {
+    return TextButton(
+      onPressed: () {},
+      style: TextButton.styleFrom(
+        padding: EdgeInsets.zero,
+        minimumSize: const Size(0, 0),
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      ),
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        decoration: BoxDecoration(
+          color: Colors.black,
+          borderRadius: BorderRadius.circular(4),
+          gradient: const LinearGradient(
+            colors: [Colors.blue, Colors.purple, Colors.red],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: const Text(
+          'This is Gradient Button.',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+            letterSpacing: 1,
+          ),
+        ),
+      ),
+    ).wrapped();
+  }
+
+  Widget _gradientIntWell() {
     return Ink(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -196,7 +228,12 @@ class ButtonPage extends StatelessWidget with ScaffoldBuilder, TitleBuilder {
           padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           child: Text(
             'This is Gradient Button.',
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              letterSpacing: 1,
+            ),
           ),
         ),
       ),

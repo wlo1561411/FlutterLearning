@@ -103,17 +103,6 @@ ThemeData primaryTheme = ThemeData(
     margin: const EdgeInsets.only(bottom: 16),
   ),
 
-  // input decoration
-  inputDecorationTheme: InputDecorationTheme(
-    filled: true,
-    fillColor: AppColors.secondaryColor.withOpacity(0.5),
-    border: const OutlineInputBorder(
-        borderRadius: BorderRadius.all(Radius.circular(5)),
-        borderSide: BorderSide.none),
-    labelStyle: TextStyle(color: AppColors.textColor),
-    prefixIconColor: AppColors.textColor,
-  ),
-
   // Dialog
   dialogTheme: DialogTheme(
     backgroundColor: AppColors.secondaryAccent,

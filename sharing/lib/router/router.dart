@@ -20,18 +20,14 @@ class AppRouterConfiguration {
 }
 
 extension TypedGoRouteInfo on TypedGoRoute {
-  String get title =>
-      path.replaceFirstMapped('/', (s) => '').capitalizeFirstLetter();
+  String get title => path.convertToCamelCase();
 }
 
-extension Capitalize on String {
-  String capitalizeFirstLetter() {
-    final input = this;
-
-    if (input.isEmpty) {
-      return input;
-    }
-
-    return input[0].toUpperCase() + input.substring(1);
+extension _Capitalize on String {
+  String convertToCamelCase() {
+    return replaceFirstMapped('/', (s) => '').split('_').map((word) {
+      if (word.isEmpty) return '';
+      return word[0].toUpperCase() + word.substring(1).toLowerCase();
+    }).join('');
   }
 }
