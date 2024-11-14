@@ -4,8 +4,9 @@ import 'package:sharing/main_shell_page.dart';
 import 'package:sharing/pages/general/general_page.dart';
 import 'package:sharing/pages/grid_page.dart';
 import 'package:sharing/pages/list_page.dart';
-import 'package:sharing/pages/scroll_page.dart';
+import 'package:sharing/pages/scroll/scroll_page.dart';
 import 'package:sharing/router/general_route.dart';
+import 'package:sharing/router/scroll_route.dart';
 
 part 'tab_route.g.dart';
 
@@ -91,7 +92,12 @@ class GeneralRoute extends GoRouteData {
 
 /// scroll
 final GlobalKey<NavigatorState> _scrollKey = GlobalKey<NavigatorState>();
-const scrollRouteType = TypedGoRoute<ScrollRoute>(path: '/scroll');
+const scrollRouteType = TypedGoRoute<ScrollRoute>(
+  path: '/scroll',
+  routes: [
+    carouselViewRouteType,
+  ],
+);
 
 class ScrollShellBranchData extends StatefulShellBranchData {
   const ScrollShellBranchData();

@@ -40,6 +40,9 @@ class _CurrencyTextFieldState extends State<CurrencyTextField> {
       /// 鍵盤樣式
       keyboardType: const TextInputType.numberWithOptions(decimal: true),
 
+      /// 輸入文字是否為明文
+      obscureText: false,
+
       /// 文字處理
       /// textShouldReplacement
       inputFormatters: [

@@ -1,16 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sharing/shared/scaffold_builder.dart';
 
-class StatefulRestraintPage extends StatefulWidget {
+class StatefulRestraintPage extends StatelessWidget with ScaffoldBuilder {
   const StatefulRestraintPage({super.key});
-
-  @override
-  State<StatefulRestraintPage> createState() => _StatefulRestraintPage();
-}
-
-class _StatefulRestraintPage extends State<StatefulRestraintPage>
-    with ScaffoldBuilder {
-  int _count = 0;
 
   @override
   Widget build(BuildContext context) {
