@@ -14,7 +14,7 @@ import 'package:sharing/pages/general/sub_pages/text_field_page/text_field_page.
 
 part 'general_route.g.dart';
 
-final List<TypedGoRoute> generalRouteTypes = [
+const List<TypedGoRoute> generalRouteTypes = [
   textRouteType,
   imageRouteType,
   buttonRouteType,

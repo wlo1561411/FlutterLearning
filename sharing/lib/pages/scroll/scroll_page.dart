@@ -17,9 +17,8 @@ class ScrollPage extends StatelessWidget with ScaffoldBuilder {
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-              _card(context, carouselViewRouteType),
-          ],
+          children:
+              scrollRouteTypes.map((route) => _card(context, route)).toList(),
         ),
       ),
     );
