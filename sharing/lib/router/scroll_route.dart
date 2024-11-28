@@ -3,7 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:sharing/pages/scroll/sub_pages/carousel_view_page.dart';
 import 'package:sharing/pages/scroll/sub_pages/custom_scroll_view_page.dart';
 import 'package:sharing/pages/scroll/sub_pages/list_page.dart';
-import 'package:sharing/pages/scroll/sub_pages/nested_scroll_view_page.dart';
+import 'package:sharing/pages/scroll/sub_pages/tab_bar_view_page/default_tab_controller_page.dart';
+import 'package:sharing/pages/scroll/sub_pages/tab_bar_view_page/tab_bar_view_page.dart';
 import 'package:sharing/pages/scroll/sub_pages/grid_page.dart';
 import 'package:sharing/pages/scroll/sub_pages/page_view_page.dart';
 import 'package:sharing/pages/scroll/sub_pages/single_scroll_view_page.dart';
@@ -15,9 +16,9 @@ const List<TypedGoRoute> scrollRouteTypes = [
   listRouteType,
   gridRouteType,
   pageViewRouteType,
+  tabBarViewRouteType,
   customScrollViewRouteType,
   carouselViewRouteType,
-  nestedScrollViewRouteType,
 ];
 
 /// single scroll view
@@ -92,18 +93,33 @@ class CarouselViewRoute extends GoRouteData {
   }
 }
 
-/// nested scrollView
-const nestedScrollViewRouteType =
-    TypedGoRoute<NestedScrollViewRoute>(path: '/nested_scroll_view');
+/// tab bar view
+const tabBarViewRouteType =
+    TypedGoRoute<TabBarViewRoute>(path: '/tab_bar_view');
 
 @immutable
-@nestedScrollViewRouteType
-class NestedScrollViewRoute extends GoRouteData {
-  const NestedScrollViewRoute();
+@tabBarViewRouteType
+class TabBarViewRoute extends GoRouteData {
+  const TabBarViewRoute();
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const NestedScrollViewPage();
+    return const TabBarViewPage();
+  }
+}
+
+/// default tab controller
+const defaultTabControllerRouteType =
+TypedGoRoute<DefaultTabControllerRoute>(path: '/default_tab_controller');
+
+@immutable
+@defaultTabControllerRouteType
+class DefaultTabControllerRoute extends GoRouteData {
+  const DefaultTabControllerRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return const DefaultTabControllerViewPage();
   }
 }
 

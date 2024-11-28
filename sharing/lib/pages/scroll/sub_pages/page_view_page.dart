@@ -16,36 +16,49 @@ class PageViewPage extends StatelessWidget with ScaffoldBuilder {
           _pageView(allowImplicitScrolling: false),
           const SizedBox(height: 30),
           _pageView(allowImplicitScrolling: true),
+          const SizedBox(height: 30),
+          _pageView(allowImplicitScrolling: false, isKeepAlive: true),
         ],
       ),
     );
   }
 
-  Widget _pageView({required bool allowImplicitScrolling}) {
+  Widget _pageView({
+    required bool allowImplicitScrolling,
+    bool isKeepAlive = false,
+  }) {
     return SizedBox(
       height: 100,
       child: PageView.builder(
         allowImplicitScrolling: allowImplicitScrolling,
         itemCount: 5,
         itemBuilder: (context, index) {
-          return _Page(index: index);
+          if (isKeepAlive) {
+            return KeepAliveExamplePage(index: index.toString());
+          } else {
+            return ExamplePage(index: index.toString());
+          }
         },
       ),
     );
   }
 }
 
-class _Page extends StatelessWidget {
-  const _Page({super.key, required this.index});
+class ExamplePage extends StatelessWidget {
+  const ExamplePage({
+    super.key,
+    required this.index,
+  });
 
-  final int index;
+  final String index;
 
   @override
   Widget build(BuildContext context) {
     print('page $index build');
 
     return Container(
-      color: Colors.primaries[index % Colors.primaries.length],
+      color: Colors
+          .primaries[(int.tryParse(index) ?? 0) % Colors.primaries.length],
       child: Center(
         child: Text(
           'Page $index',
@@ -53,5 +66,37 @@ class _Page extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class KeepAliveExamplePage extends StatefulWidget {
+  const KeepAliveExamplePage({
+    super.key,
+    required this.index,
+  });
+
+  final String index;
+
+  @override
+  State<KeepAliveExamplePage> createState() => _KeepAliveExamplePageState();
+}
+
+class _KeepAliveExamplePageState extends State<KeepAliveExamplePage>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
+  void dispose() {
+    print('page ${widget.index} disposed');
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    /// 必須執行
+    /// 告訴上層 widget 此頁要保存在內存中
+    super.build(context);
+    return ExamplePage(index: widget.index);
   }
 }

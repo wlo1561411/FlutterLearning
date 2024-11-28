@@ -72,7 +72,7 @@ class GeneralRoute extends GoRouteData {
 final GlobalKey<NavigatorState> _scrollKey = GlobalKey<NavigatorState>();
 const scrollRouteType = TypedGoRoute<ScrollRoute>(
   path: '/scroll',
-  routes: scrollRouteTypes,
+  routes: [defaultTabControllerRouteType, ...scrollRouteTypes],
 );
 
 class ScrollShellBranchData extends StatefulShellBranchData {
