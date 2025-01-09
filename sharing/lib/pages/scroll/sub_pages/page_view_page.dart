@@ -30,6 +30,7 @@ class PageViewPage extends StatelessWidget with ScaffoldBuilder {
     return SizedBox(
       height: 100,
       child: PageView.builder(
+        /// 預設緩存當前頁面前一頁跟後一頁
         allowImplicitScrolling: allowImplicitScrolling,
         itemCount: 5,
         itemBuilder: (context, index) {

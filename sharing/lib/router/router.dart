@@ -31,3 +31,8 @@ extension _Capitalize on String {
     }).join('');
   }
 }
+
+extension TypedRouteInfo on TypedRoute {
+  List<TypedGoRoute> get goRoutes =>
+      (this as TypedGoRoute?)?.routes.whereType<TypedGoRoute>().toList() ?? [];
+}

@@ -110,9 +110,14 @@ class _CarouselViewPageState extends State<CarouselViewPage>
     return ConstrainedBox(
       constraints: const BoxConstraints(maxHeight: 200),
       child: CarouselView(
+        /// 是否允許 item 不完整顯示
         itemSnapping: itemSnapping,
         controller: controller,
+
+        /// item 的寬度
         itemExtent: MediaQuery.sizeOf(context).width,
+
+        /// 最小縮小程度
         shrinkExtent: 200,
         padding: const EdgeInsets.symmetric(vertical: 10),
         children: List.generate(
@@ -130,9 +135,15 @@ class _CarouselViewPageState extends State<CarouselViewPage>
     return ConstrainedBox(
       constraints: const BoxConstraints(maxHeight: 200),
       child: CarouselView.weighted(
+        /// item 的權重
+        /// ex: [1, 7, 1]
+        /// 則每個 item 寬度為
+        /// CarouselView 本身寬度 / (1 + 7 + 1) * 當前 item 權重
         flexWeights: flexWeights,
-        itemSnapping: true,
+
+        /// 使否允許邊界的 item 拉伸到最大寬度
         consumeMaxWeight: consumeMaxWeight,
+        itemSnapping: true,
         padding: const EdgeInsets.all(5.0),
         children: List.generate(
           colors.length,

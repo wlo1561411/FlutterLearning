@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:sharing/shared/keep_alive_wrapper.dart';
 import 'package:sharing/shared/scaffold_builder.dart';
 
-class DefaultTabControllerViewPage extends StatelessWidget
+/// Source
+/// https://api.flutter.dev/flutter/material/TabBar-class.html
+/// https://api.flutter.dev/flutter/material/TabBarView-class.html
+/// https://api.flutter.dev/flutter/material/DefaultTabController-class.html
+class DefaultTabControllerPage extends StatelessWidget
     with ScaffoldBuilder {
-  const DefaultTabControllerViewPage({super.key});
+  const DefaultTabControllerPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +31,9 @@ class DefaultTabControllerViewPage extends StatelessWidget
       appBarTitle: 'DefaultTabBarController',
       context: context,
       body:
-          // _defaultTabBarControllerWithFullAlignment(short),
-          _defaultTabBarControllerWithCenterAlignment(short),
-          // _scrollableDefaultTabBarController(long),
+      // _defaultTabBarControllerWithFullAlignment(short),
+      // _defaultTabBarControllerWithCenterAlignment(short),
+      _scrollableDefaultTabBarController(long),
     );
   }
 
@@ -42,6 +46,7 @@ class DefaultTabControllerViewPage extends StatelessWidget
           Container(
             color: Colors.black,
             child: TabBar(
+
               /// 是否可以滑動
               /// 會影響到 tabAlignment
               isScrollable: false,
@@ -84,11 +89,15 @@ class DefaultTabControllerViewPage extends StatelessWidget
             ),
           ),
           Expanded(
-            child: TabBarView(
-              children: tabs.map((tab) {
-                // return _list();
-                return KeepAliveWrapper(child: _list());
-              }).toList(),
+            child:
+            /// 必須要提供 TabController 或是在 DefaultTabController 下層
+            TabBarView(
+              children: tabs.map(
+                    (tab) {
+                  // return _list();
+                  return KeepAliveWrapper(child: _list());
+                },
+              ).toList(),
             ),
           )
         ],
@@ -180,7 +189,7 @@ class DefaultTabControllerViewPage extends StatelessWidget
                 return _list();
               }).toList(),
             ),
-          )
+          ),
         ],
       ),
     );
